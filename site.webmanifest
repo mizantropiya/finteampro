@@ -1,0 +1,22 @@
+{
+  "name": "FinTeam Pro",
+  "short_name": "FinTeam Pro",
+  "lang": "ru-BY",
+  "start_url": "/finteampro/",
+  "display": "standalone",
+  "scope": "/finteampro/",
+  "background_color": "#0b1211",
+  "theme_color": "#0b1211",
+  "icons": [
+    {
+      "src": "/finteampro/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/finteampro/apple-touch-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
