@@ -594,6 +594,10 @@
 
     .qr-card { text-align: center; }
 
+    .qr-link { display: block; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+    .qr-link:hover, .qr-link:focus-visible { transform: translateY(-4px); border-color: rgba(33,197,139,.38); box-shadow: 0 20px 44px rgba(0,0,0,.22); outline: none; }
+    .qr-link .store-link { display: inline-flex; margin-top: 14px; align-items: center; justify-content: center; min-height: 42px; padding: 0 16px; border-radius: 999px; border: 1px solid rgba(33,197,139,.28); background: rgba(33,197,139,.08); color: #eafff6; font-weight: 700; }
+
     .qr-box {
       width: min(100%, 186px);
       aspect-ratio: 1;
@@ -624,8 +628,8 @@
 
     .footer-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(220px, 320px);
-      gap: 24px;
+      grid-template-columns: minmax(0, 1fr) max-content;
+      gap: 24px 40px;
       align-items: start;
     }
 
@@ -640,9 +644,19 @@
 
     .footer-links {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       gap: 10px;
-      justify-content: flex-start;
+      align-items: flex-end;
+      width: max-content;
+      max-width: none;
+    }
+
+    .footer-links-row {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 10px;
+      justify-content: flex-end;
+      width: max-content;
     }
 
     .footer-links a {
@@ -653,6 +667,7 @@
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,.08);
       background: rgba(255,255,255,.03);
+      white-space: nowrap;
     }
 
     .sr-only {
@@ -684,7 +699,8 @@
       .phone, .phone:hover { transform: none; animation: none; }
       .phone-shadow { display: none; }
       .phone-note { position: static; width: 100%; margin-top: 16px; animation: none; }
-      .footer-links { justify-content: flex-start; max-width: none; }
+      .footer-links { align-items: flex-start; width: auto; }
+      .footer-links-row { flex-wrap: wrap; justify-content: flex-start; width: 100%; }
     }
 
     @media (max-width: 820px) {
@@ -714,7 +730,8 @@
       .compare-card,
       .qr-card { padding: 22px 18px; }
       .qr-grid { grid-template-columns: 1fr; }
-      .footer-links a { width: 100%; justify-content: center; }
+      .footer-links-row { width: 100%; }
+      .footer-links a { width: auto; justify-content: center; }
     }
   
 
@@ -1254,8 +1271,6 @@
     }
 
   </style>
-
-
 <link href="https://mizantropiya.github.io/finteampro/" rel="canonical"/><link href="./favicon.ico" rel="icon" type="image/x-icon"/><link href="./favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/><link href="./apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/><link href="./site.webmanifest" rel="manifest"/><meta content="FinTeam Pro" property="og:site_name"/><meta content="https://mizantropiya.github.io/finteampro/" property="og:url"/><meta content="FinTeam Pro" name="twitter:site"/><script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -1308,7 +1323,7 @@
       "name": "Нужно ли что-то заполнять вручную?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Нет. Основной сценарий FinTeam Pro построен так, чтобы убрать ручной учет, таблицы и постоянные заметки о тратах — данные собираются и раскладываются по категориям автоматически."
+        "text": "Основной сценарий FinTeam Pro построен так, чтобы убрать ручной учет, таблицы и постоянные заметки о тратах — данные собираются и раскладываются по категориям автоматически"
       }
     },
     {
@@ -1324,7 +1339,7 @@
       "name": "Бесплатно ли приложение для пользователей?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Да. Для пользователей FinTeam Pro бесплатно, и основной сценарий контроля расходов доступен без обязательной платной подписки."
+        "text": "Для пользователей FinTeam Pro приложение бесплатно, и основной сценарий контроля расходов доступен без обязательной платной подписки"
       }
     },
     {
@@ -1347,14 +1362,14 @@
 
     ym(108358375, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/108358375" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<noscript><div><img alt="" src="https://mc.yandex.ru/watch/108358375" style="position:absolute; left:-9999px;"/></div></noscript>
 <!-- /Yandex.Metrika counter -->
 </head>
 <body>
 <header class="header">
 <div class="container header-inner">
 <a aria-label="FinTeam Pro" class="brand" href="#top">
-<span class="brand-logo"><img alt="Логотип FinTeam Pro" height="54" src="./assets/logo.png" width="190"/></span>
+<span class="brand-logo"><picture><source srcset="./assets/logo.avif" type="image/avif"/><source srcset="./assets/logo.webp" type="image/webp"/><img alt="Логотип FinTeam Pro" decoding="async" fetchpriority="high" height="54" src="./assets/logo.png" width="190"/></picture></span>
 </a>
 <nav aria-label="Основная навигация" class="nav">
 <a href="#features">Возможности</a>
@@ -1372,7 +1387,7 @@
 <h1>Все карты банков Беларуси — <span class="accent">в одном приложении</span></h1>
 <p class="lead">
             FinTeam Pro автоматически показывает расходы по категориям, помогает контролировать подписки и видеть полную картину
-            по всем картам без Excel и ручного учета.
+            по всем картам без Excel и ручного учета
           </p>
 <ul class="hero-points">
 <li><span class="dot"></span><span>Одна картина по деньгам вместо постоянных переходов между банковскими приложениями</span></li>
@@ -1416,7 +1431,7 @@
 <div class="container">
 <div class="band">
 <h2>Финансы под контролем — без лишних действий</h2>
-<p>Зарплата может приходить на одну карту, повседневные траты идти с другой, а накопления храниться в третьем банке. В итоге общую картину по деньгам увидеть сложно. FinTeam Pro собирает карты разных банков Беларуси в одном месте и помогает быстро понять, куда уходят деньги.</p>
+<p>Зарплата может приходить на одну карту, повседневные траты идти с другой, а накопления храниться в третьем банке. В итоге общую картину по деньгам увидеть сложно. FinTeam Pro собирает карты разных банков Беларуси в одном месте и помогает быстро понять, куда уходят деньги</p>
 </div>
 </div>
 </section>
@@ -1424,7 +1439,7 @@
 <div class="container">
 <div class="section-head">
 <h2>Почему одного банковского приложения уже недостаточно</h2>
-<p>Если у вас несколько карт в разных банках, расходы оказываются разбросаны по разным приложениям. В одном банке видна только часть трат, а общая картина по деньгам теряется.</p>
+<p>Если у вас несколько карт в разных банках, расходы оказываются разбросаны по разным приложениям. В одном банке видна только часть трат, а общая картина по деньгам теряется</p>
 </div>
 <div class="compare">
 <article class="compare-card">
@@ -1450,12 +1465,12 @@
 <div class="container">
 <div class="section-head">
 <h2>Безопасно и на понятной юридической основе</h2>
-<p>Для финтех-приложения доверие так же важно, как и удобство. Поэтому FinTeam Pro строит подключение карт на понятной и легальной модели интеграции.</p>
+<p>Для финтех-приложения доверие так же важно, как и удобство. Поэтому FinTeam Pro строит подключение карт на понятной и легальной модели интеграции</p>
 </div>
 <div class="safety-grid">
 <article class="safety-card">
 <h3>Как устроено подключение</h3>
-<p>FinTeam Pro работает на основе стандарта открытых API Национального банка Республики Беларусь. Это означает, что интеграция строится на прозрачной технологической модели, а не на обходных решениях.</p>
+<p>FinTeam Pro работает на основе стандарта открытых API Национального банка Республики Беларусь. Это означает, что интеграция строится на прозрачной технологической модели, а не на обходных решениях</p>
 <ul>
 <li>стандарт открытых API НБ РБ</li>
 <li>понятная и легальная модель интеграции</li>
@@ -1477,7 +1492,7 @@
 <div class="container">
 <div class="section-head">
 <h2>Что вы получаете в FinTeam Pro</h2>
-<p>Все главные инструменты для контроля личных финансов собраны так, чтобы приложением было удобно пользоваться каждый день: открыть и сразу понять, куда уходят деньги.</p>
+<p>Все главные инструменты для контроля личных финансов собраны так, чтобы приложением было удобно пользоваться каждый день: открыть и сразу понять, куда уходят деньги</p>
 </div>
 <div class="grid-3">
 <article class="card">
@@ -1517,7 +1532,7 @@
 <div class="container">
 <div class="section-head">
 <h2>Кому особенно подойдет FinTeam Pro</h2>
-<p>Приложение создано для тех, кто хочет лучше понимать свои деньги, но не хочет тратить время на таблицы, заметки и ручной учет.</p>
+<p>Приложение создано для тех, кто хочет лучше понимать свои деньги, но не хочет тратить время на таблицы, заметки и ручной учет</p>
 </div>
 <div class="audience">
 <article class="audience-card">
@@ -1539,12 +1554,12 @@
 <div class="container">
 <div class="section-head">
 <h2>Где деньги чаще всего утекают незаметно</h2>
-<p>Ниже — типовой иллюстративный сценарий повседневных расходов для активного пользователя в Беларуси, который не отслеживает подписки, транспорт, кофе, доставку и мелкие импульсивные покупки в одной аналитике.</p>
+<p>Ниже — типовой иллюстративный сценарий повседневных расходов для активного пользователя в Беларуси, который не отслеживает подписки, транспорт, кофе, доставку и мелкие импульсивные покупки в одной аналитике</p>
 </div>
 <div class="scenario-grid">
 <article class="scenario-panel">
 <div class="scenario-amount">178 <span>BYN</span></div>
-<p>Иллюстративный пример того, сколько может теряться в месяц, если расходы остаются без единой картины и привычного обзора по всем картам.</p>
+<p>Иллюстративный пример того, сколько может теряться в месяц, если расходы остаются без единой картины и привычного обзора по всем картам</p>
 <ul class="scenario-points">
 <li>
 <span class="scenario-dot" style="background:#21c58b"></span>
@@ -1605,12 +1620,12 @@
 <div class="container">
 <div class="section-head">
 <h2>Частые вопросы</h2>
-<p>Собрали короткие и понятные ответы на самое важное: безопасность, подключение карт, ручной учет и роль AI‑подсказок.</p>
+<p>Собрали короткие и понятные ответы на самое важное: безопасность, подключение карт, ручной учет и роль AI‑подсказок</p>
 </div>
 <div class="faq-wrap">
 <div class="faq-intro card">
 <h3>Все самое важное — коротко и по делу</h3>
-<p>Если у вас несколько карт, хочется видеть расходы без Excel и понимать, где деньги утекают незаметно, FinTeam Pro закрывает этот сценарий в одном понятном интерфейсе.</p>
+<p>Если у вас несколько карт, хочется видеть расходы без Excel и понимать, где деньги утекают незаметно, FinTeam Pro закрывает этот сценарий в одном понятном интерфейсе</p>
 </div>
 <div class="faq faq-single" role="list">
 <div class="faq-item">
@@ -1621,7 +1636,7 @@
 </button>
 <div aria-labelledby="faq-question-1" class="faq-answer" id="faq-answer-1" role="region">
 <div class="faq-answer-inner">
-<p>FinTeam Pro работает на основе стандарта открытых API Национального банка Республики Беларусь СФУТ 6.03-2024. Это означает, что у интеграции есть понятная юридическая и технологическая основа, а сам подход не строится на серых обходных решениях.</p>
+<p>FinTeam Pro работает на основе стандарта открытых API Национального банка Республики Беларусь СФУТ 6.03-2024. Это означает, что у интеграции есть понятная юридическая и технологическая основа, а сам подход не строится на серых обходных решениях</p>
 </div>
 </div>
 </div>
@@ -1632,7 +1647,7 @@
 </button>
 <div aria-labelledby="faq-question-2" class="faq-answer" id="faq-answer-2" role="region">
 <div class="faq-answer-inner">
-<p>FinTeam Pro — это мобильное приложение для жителей Беларуси, которое объединяет карты разных банков в одном месте, автоматически показывает структуру расходов и помогает спокойнее управлять деньгами каждый день.</p>
+<p>FinTeam Pro — это мобильное приложение для жителей Беларуси, которое объединяет карты разных банков в одном месте, автоматически показывает структуру расходов и помогает спокойнее управлять деньгами каждый день</p>
 </div>
 </div>
 </div>
@@ -1654,7 +1669,7 @@
 </button>
 <div aria-labelledby="faq-question-4" class="faq-answer" id="faq-answer-4" role="region">
 <div class="faq-answer-inner">
-<p>Нет. Идея приложения как раз в том, чтобы убрать ручной учет, таблицы и постоянные заметки о тратах — основные данные собираются и раскладываются по категориям автоматически.</p>
+<p>Нет, идея приложения как раз в том, чтобы убрать ручной учет, таблицы и постоянные заметки о тратах — основные данные собираются и раскладываются по категориям автоматически</p>
 </div>
 </div>
 </div>
@@ -1665,7 +1680,7 @@
 </button>
 <div aria-labelledby="faq-question-5" class="faq-answer" id="faq-answer-5" role="region">
 <div class="faq-answer-inner">
-<p>Да. Для пользователей FinTeam Pro бесплатно, и основной сценарий контроля расходов доступен без обязательной платной подписки.</p>
+<p>Да, для пользователей FinTeam Pro бесплатно, и основной сценарий контроля расходов доступен без обязательной платной подписки</p>
 </div>
 </div>
 </div>
@@ -1676,7 +1691,7 @@
 </button>
 <div aria-labelledby="faq-question-6" class="faq-answer" id="faq-answer-6" role="region">
 <div class="faq-answer-inner">
-<p>AI‑подсказки нужны не ради красивого слова, а чтобы быстрее замечать повторяющиеся траты, лишние подписки и категории, где деньги уходят незаметно. Главная цель — сделать контроль расходов проще и понятнее.</p>
+<p>AI‑подсказки нужны не ради красивого слова, а чтобы быстрее замечать повторяющиеся траты, лишние подписки и категории, где деньги уходят незаметно. Главная цель — сделать контроль расходов проще и понятнее</p>
 </div>
 </div>
 </div>
@@ -1685,17 +1700,16 @@
 </div>
 </div>
 </section>
-
 <section class="section" id="resources">
 <div class="container">
 <div class="section-head">
 <h2>Полезные страницы</h2>
-<p>Если хотите подробнее разобраться в продукте и условиях использования, перейдите в отдельные разделы сайта.</p>
+<p>Если хотите подробнее разобраться в продукте и условиях использования, перейдите в отдельные разделы сайта</p>
 </div>
 <div class="grid-3">
-<article class="card"><div class="icon">🧭</div><h3><a href="./how-it-works.html">Как это работает</a></h3><p>Пошаговый сценарий: подключение карт, категории расходов, подписки и лимиты.</p></article>
-<article class="card"><div class="icon">🛡️</div><h3><a href="./security.html">Безопасность</a></h3><p>Что такое открытые API, почему интеграция легальна и как сайт объясняет доверие.</p></article>
-<article class="card"><div class="icon">📄</div><h3><a href="./faq.html">FAQ и документы</a></h3><p>Ответы на частые вопросы, политика конфиденциальности, условия использования и контакты.</p></article>
+<article class="card"><div class="icon">🧭</div><h3><a href="./how-it-works.html">Как это работает</a></h3><p>Пошаговый сценарий: подключение карт, категории расходов, подписки и лимиты</p></article>
+<article class="card"><div class="icon">🛡️</div><h3><a href="./security.html">Безопасность</a></h3><p>Что такое открытые API, почему интеграция легальна и как сайт объясняет доверие</p></article>
+<article class="card"><div class="icon">📄</div><h3><a href="./faq.html">FAQ и документы</a></h3><p>Ответы на частые вопросы, политика конфиденциальности, условия использования и контакты</p></article>
 </div>
 </div>
 </section>
@@ -1703,25 +1717,8 @@
 <div class="container">
 <div class="download-card">
 <h2>Начните видеть все расходы по картам в одном месте</h2>
-<p>Подключите карты банков Беларуси, контролируйте подписки и получайте понятную аналитику без Excel и ручного учета.</p>
-<div class="qr-grid">
-<article class="qr-card">
-<div class="qr-box">
-<img alt="QR‑код для загрузки FinTeam Pro в Google Play" height="180" loading="lazy" src="./assets/qr-play.png" width="180"/>
-</div>
-<strong>Google Play</strong>
-<div class="qr-caption">Откройте страницу приложения</div>
-<div class="qr-meta">Сканируйте QR‑код и переходите к установке</div>
-</article>
-<article class="qr-card">
-<div class="qr-box">
-<img alt="QR‑код для загрузки FinTeam Pro в App Store" height="180" loading="lazy" src="./assets/qr-appstore.png" width="180"/>
-</div>
-<strong>App Store</strong>
-<div class="qr-caption">Откройте страницу приложения</div>
-<div class="qr-meta">Сканируйте QR‑код и переходите к установке</div>
-</article>
-</div>
+<p>Подключите карты банков Беларуси, контролируйте подписки и получайте понятную аналитику без Excel и ручного учета</p>
+<div class="qr-grid"><a aria-label="Открыть в Google Play — Google Play" class="qr-card qr-link" href="https://play.google.com/store/apps/details?id=com.mobicon.mbank2.belarusbank" rel="noopener noreferrer" target="_blank"><div class="qr-box"><img alt="QR‑код для загрузки FinTeam Pro в Google Play" height="180" loading="lazy" src="./assets/qr-play.png" width="180"/></div><strong>Google Play</strong><div class="qr-caption">Нажмите или отсканируйте</div><div class="qr-meta">QR‑код с другого устройства откроет страницу приложения</div><span class="store-link">Открыть в Google Play</span></a><a aria-label="Открыть в App Store — App Store" class="qr-card qr-link" href="https://apps.apple.com/by/app/m-belarusbank/id549469274" rel="noopener noreferrer" target="_blank"><div class="qr-box"><img alt="QR‑код для загрузки FinTeam Pro в App Store" height="180" loading="lazy" src="./assets/qr-appstore.png" width="180"/></div><strong>App Store</strong><div class="qr-caption">Нажмите или отсканируйте</div><div class="qr-meta">QR‑код с другого устройства откроет страницу приложения</div><span class="store-link">Открыть в App Store</span></a></div>
 </div>
 </div>
 </section>
@@ -1729,11 +1726,11 @@
 <footer class="footer">
 <div class="container footer-grid">
 <div class="footer-brand">
-<div class="brand-logo"><img alt="Логотип FinTeam Pro" height="54" loading="lazy" src="./assets/logo.png" width="190"/></div>
-<div class="footer-note">FinTeam Pro — приложение для жителей Беларуси, которое объединяет карты разных банков в одном месте, автоматически показывает, куда уходят деньги, и помогает контролировать подписки и лимиты.</div>
+<div class="brand-logo"><picture><source srcset="./assets/logo.avif" type="image/avif"/><source srcset="./assets/logo.webp" type="image/webp"/><img alt="Логотип FinTeam Pro" decoding="async" height="54" loading="lazy" src="./assets/logo.png" width="190"/></picture></div>
+<div class="footer-note">FinTeam Pro — приложение для жителей Беларуси, которое объединяет карты разных банков в одном месте, помогает видеть расходы, контролировать подписки и отслеживать лимиты</div>
 <div class="footer-meta">© 2026 FinTeam Pro</div>
 </div>
-<div class="footer-links"><a href="#features">Возможности</a><a href="./download.html">Скачать</a><a href="./how-it-works.html">Как это работает</a><a href="./security.html">Безопасность</a><a href="./faq.html">FAQ</a><a href="./privacy.html">Конфиденциальность</a><a href="./terms.html">Условия</a><a href="./contacts.html">Контакты</a></div>
+<div class="footer-links"><div class="footer-links-row"><a href="#features">Возможности</a><a href="./download.html">Скачать</a><a href="./how-it-works.html">Как это работает</a></div><div class="footer-links-row"><a href="./security.html">Безопасность</a><a href="./faq.html">FAQ</a><a href="./privacy.html">Конфиденциальность</a></div><div class="footer-links-row"><a href="./terms.html">Условия</a><a href="./contacts.html">Контакты</a></div></div>
 </div>
 </footer>
 <script>
